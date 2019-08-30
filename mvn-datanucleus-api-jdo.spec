@@ -4,15 +4,18 @@
 #
 Name     : mvn-datanucleus-api-jdo
 Version  : 3.2.7
-Release  : 1
+Release  : 2
 URL      : https://github.com/datanucleus/datanucleus-api-jdo/archive/datanucleus-api-jdo-3.2.7.tar.gz
 Source0  : https://github.com/datanucleus/datanucleus-api-jdo/archive/datanucleus-api-jdo-3.2.7.tar.gz
-Source1  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.jar
-Source2  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.pom
+Source1  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.jar
+Source2  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.pom
+Source3  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.jar
+Source4  : https://repo1.maven.org/maven2/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-datanucleus-api-jdo-data = %{version}-%{release}
+Requires: mvn-datanucleus-api-jdo-license = %{version}-%{release}
 
 %description
 datanucleus-api-jdo
@@ -27,16 +30,33 @@ Group: Data
 data components for the mvn-datanucleus-api-jdo package.
 
 
+%package license
+Summary: license components for the mvn-datanucleus-api-jdo package.
+Group: Default
+
+%description license
+license components for the mvn-datanucleus-api-jdo package.
+
+
 %prep
+%setup -q -n datanucleus-api-jdo-datanucleus-api-jdo-3.2.7
 
 %build
 
 %install
-mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.jar
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-datanucleus-api-jdo
+cp META-INF/LICENSE.txt %{buildroot}/usr/share/package-licenses/mvn-datanucleus-api-jdo/META-INF_LICENSE.txt
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.pom
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.pom
 
 
 %files
@@ -44,5 +64,11 @@ cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/datanucleus/datanuc
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.jar
+/usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.1/datanucleus-api-jdo-3.2.1.pom
 /usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.jar
 /usr/share/java/.m2/repository/org/datanucleus/datanucleus-api-jdo/3.2.6/datanucleus-api-jdo-3.2.6.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-datanucleus-api-jdo/META-INF_LICENSE.txt
